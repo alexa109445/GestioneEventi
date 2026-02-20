@@ -47,7 +47,7 @@ public class UtentiService {
         return utentiRepo.findAll();
     }
 
-//    public Utenti trovaPerId(Long id) {
-//        return utentiRepo.findById(id).orElse(null);
-//    }
+    public Utenti trovaPerId(Long id) {
+        return utentiRepo.findById(id).orElse(null);
+    }
 }

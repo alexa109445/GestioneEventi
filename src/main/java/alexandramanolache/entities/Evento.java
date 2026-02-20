@@ -20,8 +20,10 @@ public class Evento {
     private Long id;
     private String titolo;
     private String descrizione;
-    private LocalDate luogo;
+    private LocalDate data;
+    private String luogo;
     private int postiTotali;
+
 
     @ManyToOne
     @JoinColumn(name = "organizzatore_id")
