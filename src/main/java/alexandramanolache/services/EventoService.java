@@ -32,5 +32,8 @@ public class EventoService {
 
     }
 
+    public Evento trovaPerId(Long id) {
+        return eventoRepo.findById(id).orElse(null);
+    }
 
 }
