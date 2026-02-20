@@ -4,6 +4,7 @@ import alexandramanolache.entities.Utenti;
 import alexandramanolache.payloads.LoginDTO;
 import alexandramanolache.repositories.UtentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public class UtentiService {
 
     @Autowired
     private UtentiRepository utentiRepo;
+
+    @Autowired
+    private PasswordEncoder bcrypt;
 
     public String effettuaLogin(LoginDTO loginDTO) {
 
@@ -33,6 +37,9 @@ public class UtentiService {
     }
 
     public Utenti salvaUtente(Utenti nuovoUtente) {
+        String passwordCriptata = bcrypt.encode(nuovoUtente.getPassword());
+        nuovoUtente.setPassword(passwordCriptata);
+
         return utentiRepo.save(nuovoUtente);
     }
 
@@ -40,7 +47,7 @@ public class UtentiService {
         return utentiRepo.findAll();
     }
 
-    public Utenti trovaPerId(Long id) {
-        return utentiRepo.findById(id).orElse(null);
-    }
+//    public Utenti trovaPerId(Long id) {
+//        return utentiRepo.findById(id).orElse(null);
+//    }
 }
