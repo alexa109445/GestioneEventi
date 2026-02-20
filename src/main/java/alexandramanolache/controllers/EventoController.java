@@ -19,5 +19,16 @@ public class EventoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Evento creaEvento(@RequestBody EventoDTO body) {
         return eventoService.salvaEvento((body));
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void elimina(@PathVariable Long id) {
+        eventoService.eliminaEvento(id);
+    }
+
+    @PutMapping("/{id}")
+    public Evento modifica(@PathVariable Long id, @RequestBody EventoDTO body) {
+        return eventoService.modificaEvento(id, body);
     }
 }
