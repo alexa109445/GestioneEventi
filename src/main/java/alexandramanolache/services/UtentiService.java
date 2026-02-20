@@ -1,9 +1,9 @@
-package services;
+package alexandramanolache.services;
 
-import entities.Utenti;
+import alexandramanolache.entities.Utenti;
+import alexandramanolache.repositories.UtentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.UtentiRepository;
 
 import java.util.List;
 

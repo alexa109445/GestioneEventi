@@ -1,4 +1,4 @@
-package entities;
+package alexandramanolache.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
