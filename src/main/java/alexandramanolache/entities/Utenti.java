@@ -17,7 +17,6 @@ public class Utenti {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String ruolo;
-
+    @Enumerated(EnumType.STRING)
+    private Ruolo ruolo;
 }
