@@ -1,6 +1,7 @@
 package alexandramanolache.services;
 
 import alexandramanolache.entities.Utenti;
+import alexandramanolache.payloads.LoginDTO;
 import alexandramanolache.repositories.UtentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,27 @@ import java.util.List;
 
 @Service
 public class UtentiService {
+
     @Autowired
     private UtentiRepository utentiRepo;
+
+    public String effettuaLogin(LoginDTO loginDTO) {
+
+        String usernameInserito = loginDTO.getUsername();
+        String passwordInserita = loginDTO.getPassword();
+
+        Utenti utenteTrovato = utentiRepo.findByUsername(usernameInserito).orElse(null);
+
+        if (utenteTrovato == null) {
+            return "Errore: Utente non trovato nel database!";
+        }
+
+        if (!utenteTrovato.getPassword().equals(passwordInserita)) {
+            return "Errore: La password è sbagliata!";
+        }
+
+        return "Login effettuato con successo! Benvenuto " + utenteTrovato.getUsername();
+    }
 
     public Utenti salvaUtente(Utenti nuovoUtente) {
         return utentiRepo.save(nuovoUtente);
@@ -24,4 +44,3 @@ public class UtentiService {
         return utentiRepo.findById(id).orElse(null);
     }
 }
-

@@ -1,6 +1,7 @@
 package alexandramanolache.controllers;
 
 import alexandramanolache.entities.Utenti;
+import alexandramanolache.payloads.LoginDTO;
 import alexandramanolache.services.UtentiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,5 +23,10 @@ public class UtentiController {
     @GetMapping("/lista")
     public List<Utenti> vediTutti() {
         return utentiService.listaUtenti();
+    }
+
+    @PostMapping("/login")
+    public String loginUtente(@RequestBody LoginDTO loginDTO) {
+        return utentiService.effettuaLogin(loginDTO);
     }
 }
