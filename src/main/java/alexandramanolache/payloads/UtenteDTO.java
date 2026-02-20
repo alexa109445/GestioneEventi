@@ -1,24 +1,16 @@
-package alexandramanolache.entities;
+package alexandramanolache.payloads;
 
-import jakarta.persistence.*;
+import alexandramanolache.entities.Ruolo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "utenti")
 @Data
 @NoArgsConstructor
-public class Utenti {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class UtenteDTO {
     private String username;
     private String nome;
     private String cognome;
     private String email;
     private String password;
-
-    @Enumerated(EnumType.STRING)
     private Ruolo ruolo;
 }

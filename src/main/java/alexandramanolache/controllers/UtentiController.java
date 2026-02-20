@@ -2,6 +2,7 @@ package alexandramanolache.controllers;
 
 import alexandramanolache.entities.Utenti;
 import alexandramanolache.payloads.LoginDTO;
+import alexandramanolache.payloads.UtenteDTO;
 import alexandramanolache.services.UtentiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class UtentiController {
     private UtentiService utentiService;
 
     @PostMapping("/registrazione")
-    public Utenti registraNuovo(@RequestBody Utenti utenteDaSalvare) {
-        return utentiService.salvaUtente(utenteDaSalvare);
+    public Utenti registra(@RequestBody UtenteDTO body) {
+        return utentiService.salvaUtente(body);
     }
 
     @GetMapping("/lista")

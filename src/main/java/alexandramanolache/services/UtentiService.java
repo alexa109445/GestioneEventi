@@ -2,6 +2,7 @@ package alexandramanolache.services;
 
 import alexandramanolache.entities.Utenti;
 import alexandramanolache.payloads.LoginDTO;
+import alexandramanolache.payloads.UtenteDTO;
 import alexandramanolache.repositories.UtentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,9 +37,20 @@ public class UtentiService {
         return "Login effettuato con successo! Benvenuto " + utenteTrovato.getUsername();
     }
 
-    public Utenti salvaUtente(Utenti nuovoUtente) {
-        String passwordCriptata = bcrypt.encode(nuovoUtente.getPassword());
+
+    public Utenti salvaUtente(UtenteDTO body) {
+
+        Utenti nuovoUtente = new Utenti();
+
+        nuovoUtente.setUsername(body.getUsername());
+        nuovoUtente.setNome(body.getNome());
+        nuovoUtente.setCognome(body.getCognome());
+        nuovoUtente.setEmail(body.getEmail());
+
+        String passwordCriptata = bcrypt.encode(body.getPassword());
         nuovoUtente.setPassword(passwordCriptata);
+
+        nuovoUtente.setRuolo(body.getRuolo());
 
         return utentiRepo.save(nuovoUtente);
     }
